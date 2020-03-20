@@ -40,7 +40,7 @@ def get_usa_deaths():
 mapdata = None
 def get_map_data():
     global mapdata
-    cur.execute("Select * from coronaworld where country_or_region = 'US' AND date_recorded BETWEEN '2020-03-19' AND '2020-03-20';")
+    cur.execute("Select * from coronaworld where country_or_region = 'US';")
     rows = cur.fetchall()
     mapdata = sql_to_json(rows)
 
