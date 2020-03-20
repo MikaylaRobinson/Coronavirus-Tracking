@@ -1,0 +1,5 @@
+database_name='database_name'
+host_name='host_name'
+port_number='port_number'
+db_username='db_username'
+user_password='user_password'

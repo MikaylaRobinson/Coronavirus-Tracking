@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>COVID-19</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" type="text/css" media="screen" href="static/css/main.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <script src="static/js/main.js"></script>
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+         crossorigin=""/>
+      <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+         integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+         crossorigin=""></script>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+   </head>
+
+   <body>
+      <nav>
+         <div class="nav-wrapper blue darken-1">
+            <a href="#" class="brand-logo">Covid-19 Tracker</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            </ul>
+         </div>
+      </nav>
+
+      <h1 class="center">United States</h1>
+      <!-- USA Map with case/death counts for United States -->
+      <div class="row">
+         <div class="col s9 push-s3">
+            <div id="mapid">
+               <!-- You can place the container wherever you want, but it has to be before loading the code-->
+            </div>
+         </div>
+         <div class="col s3 pull-s9"><span class="flow-text">USA TOTAL CASES: <div id="usa-total-cases"></div></span></div>
+         <div class="col s3 pull-s9"><span  class="flow-text">USA TOTAL DEATHS: <div id="usa-total-deaths"></div></span></div>
+      </div>
+
+      <!-- USA Comparison Charts with Italy -->
+      <div class="row">
+         <div class="col s12">
+            <h3 class="center">How does the United States compare to other countries?</h3>
+         </div>
+         <div class="col s6">
+            <h3 class="center">Italy</h3>
+            <canvas id="myChart" width="400" height="400"></canvas>
+         </div>
+         <div class="col s6">
+            <h5 class="center">ADD CLICKABLE OPTION TO CHANGE COUNTRY DISPLAYED</h5>
+            <ul class="collection">
+                <li class="collection-item">Country 1</li>
+                <li class="collection-item">Country 2</li>
+                <li class="collection-item">Country 3</li>
+            </ul>
+         </div>
+      </div>
+
+      <!-- Script for USA chart -->
+      <script>
+         $.get("/api/country/usa/graph", function (data) {
+                 var graph_labels = []
+                 var graph_data = []
+                 json_graph_data = JSON.parse(data);
+                 
+                 for (index in json_graph_data) {
+                     graph_labels.push(json_graph_data[index].date_recorded);
+                     graph_data.push(json_graph_data[index].confirmed);
+                 }
+         
+                 var ctx = document.getElementById('myChart').getContext('2d');
+                 var myChart = new Chart(ctx, {
+                     type: 'bar',
+                     data: {
+                         labels: graph_labels,
+                         datasets: [{
+                             label: 'Number of cases over time',
+                             data: graph_data,
+                             backgroundColor: [
+                                 'rgba(255, 99, 132, 0.2)',
+                                 'rgba(54, 162, 235, 0.2)',
+                                 'rgba(255, 206, 86, 0.2)',
+                                 'rgba(75, 192, 192, 0.2)',
+                                 'rgba(153, 102, 255, 0.2)',
+                                 'rgba(255, 159, 64, 0.2)'
+                             ],
+                             borderColor: [
+                                 'rgba(255, 99, 132, 1)',
+                                 'rgba(54, 162, 235, 1)',
+                                 'rgba(255, 206, 86, 1)',
+                                 'rgba(75, 192, 192, 1)',
+                                 'rgba(153, 102, 255, 1)',
+                                 'rgba(255, 159, 64, 1)'
+                             ],
+                             borderWidth: 1
+                         }]
+                     },
+                     options: {
+                         scales: {
+                             yAxes: [{
+                                 ticks: {
+                                     beginAtZero: true
+                                 }
+                             }]
+                         }
+                     }
+                 });
+             })
+         
+         
+         
+         
+      </script>
+   </body>
+   <!-- Script for the USA counts and USA map -->
+   <script>
+      $.get( "/api/country/aggregate/cases/usa", function( data ) {
+          $("#usa-total-cases").html(data);
+        });
+      
+        $.get( "/api/country/aggregate/deaths/usa", function( data ) {
+          $("#usa-total-deaths").html(data);
+        });
+
+        $.get( "/api/country/usa/mapdata", function( data ) {
+            var coordinates = []
+            json_data = JSON.parse(data);
+            
+            for (index in json_data) {
+                map_entry = {
+                    "confirmed": json_data[index].confirmed,
+                    "latitude": json_data[index].latitude,
+                    "longitude": json_data[index].longitude,
+                };
+
+                coordinates.push(map_entry);
+            }
+
+            var mymap = L.map('mapid').setView([39.8283, -98.5795], 4);
+    
+            L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+                '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1
+            }).addTo(mymap);
+            
+            console.log(coordinates)
+            for (map_entry in coordinates) {
+                var circle = new L.circle([coordinates[map_entry]["latitude"], coordinates[map_entry]["longitude"]], {
+                    color: 'red',
+                    fillColor: '#f03',
+                    fillOpacity: 0.5,
+                    radius: 500
+                    }).addTo(mymap);
+            }
+            })
+      
+
+
+   </script>
+   </body>
+</html>
