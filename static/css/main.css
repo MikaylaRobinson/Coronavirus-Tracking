@@ -1,4 +1,17 @@
 .center {
     text-align: center;
 }
+.content {
+    padding-left: 50px;
+    padding-right: 50px;
+}
 #mapid { height: 550px; }
+
+.map-container {
+    margin: .5rem 0 1rem 0;
+}
+
+.logo {
+    margin-left: 50px;
+    padding-left: .75rem;
+}

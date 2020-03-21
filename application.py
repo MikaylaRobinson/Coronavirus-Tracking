@@ -42,7 +42,7 @@ def get_map_data():
     global mapdata
     cur.execute("Select * from coronaworld where country_or_region = 'US';")
     rows = cur.fetchall()
-    mapdata = sql_to_json(rows)
+    mapdata = sql_to_json_all_columns(rows)
 
 @app.route('/')
 def index():
@@ -62,23 +62,24 @@ def api_country_aggregate_deaths_usa():
 
 @app.route('/api/country/usa/graph', methods=['GET'])
 def api_country_usa_count_graph():
-    cur.execute("Select * from coronaworld where country_or_region = 'US' and confirmed > 100 order by date_recorded;")
+    cur.execute("Select sum(confirmed), date_recorded from coronaworld where country_or_region = 'US' group by date_recorded;")
     rows = cur.fetchall()
-    return sql_to_json(rows)
+    return prepare_graph_data(rows)
 
 @app.route('/api/country/usa/mapdata')
 def api_country_usa_map():
     return mapdata
 
-@app.route('/api/country/italy', methods=['GET'])
-def api_country_italy():
-    cur.execute("Select * from italycases limit 10;")
+@app.route('/api/country/graph/<country_name>', methods=['GET'])
+def api_country_general(country_name):
+    query = "Select sum(confirmed), date_recorded from coronaworld where country_or_region = %(country)s group by date_recorded;"
+    cur.execute(query, {"country": country_name})
     rows = cur.fetchall()
-    return sql_to_json(rows)
+    return prepare_graph_data(rows)
 
 
 # Transforms rows returned from SQL query to json
-def sql_to_json(rows):
+def sql_to_json_all_columns(rows):
     objects_list = []
     for row in rows:
         info_by_column = collections.OrderedDict()
@@ -93,6 +94,31 @@ def sql_to_json(rows):
 
         objects_list.append(info_by_column)
     converted_json = json.dumps(objects_list, default=str)
+    return converted_json
+
+def sql_to_json_sum_date(rows):
+    objects_list = []
+    for row in rows:
+        info_by_column = collections.OrderedDict()
+        info_by_column['total_confirmed']=row[0]
+        info_by_column['date']=row[1]
+
+        objects_list.append(info_by_column)
+    converted_json = json.dumps(objects_list, default=str)
+    return converted_json
+
+def prepare_graph_data(rows):
+    new_json_data = []
+    day_counter = 1
+    for row in rows:
+        if day_counter <= 25 and row[0] >= 50:
+            info_by_column = collections.OrderedDict()
+            info_by_column['day_count'] = day_counter
+            info_by_column['total_confirmed']=row[0]
+            info_by_column['date']= row[1]
+            new_json_data.append(info_by_column)
+            day_counter += 1
+    converted_json = json.dumps(new_json_data, default=str)
     return converted_json
 
 if __name__ == '__main__':

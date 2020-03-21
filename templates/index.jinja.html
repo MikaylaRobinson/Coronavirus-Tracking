@@ -20,99 +20,149 @@
 
    <body>
       <nav>
-         <div class="nav-wrapper blue darken-1">
-            <a href="#" class="brand-logo">Covid-19 Tracker</a>
+         <div class="nav-wrapper blue-grey darken-1">
+            <a href="#" class="brand-logo logo">Covid-19 Tracker</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
             </ul>
          </div>
       </nav>
 
-      <h1 class="center">United States</h1>
-      <!-- USA Map with case/death counts for United States -->
-      <div class="row">
-         <div class="col s9 push-s3">
-            <div id="mapid">
-               <!-- You can place the container wherever you want, but it has to be before loading the code-->
+      <div class="content">
+        <h1 class="center">United States Overview</h1>
+        <!-- USA Map with case/death counts for United States -->
+        <div class="row">
+            <div class="col s9 push-s3 map-container">
+                <div id="mapid">
+                </div>
             </div>
-         </div>
-         <div class="col s3 pull-s9"><span class="flow-text">USA TOTAL CASES: <div id="usa-total-cases"></div></span></div>
-         <div class="col s3 pull-s9"><span  class="flow-text">USA TOTAL DEATHS: <div id="usa-total-deaths"></div></span></div>
-      </div>
 
-      <!-- USA Comparison Charts with Italy -->
-      <div class="row">
-         <div class="col s12">
-            <h3 class="center">How does the United States compare to other countries?</h3>
-         </div>
-         <div class="col s6">
-            <h3 class="center">Italy</h3>
-            <canvas id="myChart" width="400" height="400"></canvas>
-         </div>
-         <div class="col s6">
-            <h5 class="center">ADD CLICKABLE OPTION TO CHANGE COUNTRY DISPLAYED</h5>
-            <ul class="collection">
-                <li class="collection-item">Country 1</li>
-                <li class="collection-item">Country 2</li>
-                <li class="collection-item">Country 3</li>
-            </ul>
-         </div>
-      </div>
+            <div class="col s3 pull-s9">
+                <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                        <span class="card-title flow-text">Total Cases</span>
+                        <div id="usa-total-cases"></div>
+                        </div>
+                </div>
+            </div>
 
-      <!-- Script for USA chart -->
-      <script>
-         $.get("/api/country/usa/graph", function (data) {
-                 var graph_labels = []
-                 var graph_data = []
-                 json_graph_data = JSON.parse(data);
-                 
-                 for (index in json_graph_data) {
-                     graph_labels.push(json_graph_data[index].date_recorded);
-                     graph_data.push(json_graph_data[index].confirmed);
-                 }
-         
-                 var ctx = document.getElementById('myChart').getContext('2d');
-                 var myChart = new Chart(ctx, {
-                     type: 'bar',
-                     data: {
-                         labels: graph_labels,
-                         datasets: [{
-                             label: 'Number of cases over time',
-                             data: graph_data,
-                             backgroundColor: [
-                                 'rgba(255, 99, 132, 0.2)',
-                                 'rgba(54, 162, 235, 0.2)',
-                                 'rgba(255, 206, 86, 0.2)',
-                                 'rgba(75, 192, 192, 0.2)',
-                                 'rgba(153, 102, 255, 0.2)',
-                                 'rgba(255, 159, 64, 0.2)'
-                             ],
-                             borderColor: [
-                                 'rgba(255, 99, 132, 1)',
-                                 'rgba(54, 162, 235, 1)',
-                                 'rgba(255, 206, 86, 1)',
-                                 'rgba(75, 192, 192, 1)',
-                                 'rgba(153, 102, 255, 1)',
-                                 'rgba(255, 159, 64, 1)'
-                             ],
-                             borderWidth: 1
-                         }]
-                     },
-                     options: {
-                         scales: {
-                             yAxes: [{
-                                 ticks: {
-                                     beginAtZero: true
-                                 }
-                             }]
-                         }
-                     }
-                 });
-             })
-         
-         
-         
-         
-      </script>
+            <div class="col s3 pull-s9">
+                <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                        <span class="card-title flow-text">Total Deaths</span>
+                        <div id="usa-total-deaths"></div>
+                        </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- USA Comparison Charts with Italy -->
+        <div class="row">
+            <div class="col s12">
+                <h3 class="center">How does the United States compare to other countries?</h3>
+            </div>
+            <div class="col s6">
+                <h3 class="center">USA</h3>
+                <canvas id="myChart" width="400" height="400"></canvas>
+            </div>
+            <div class="col s6">
+                <div class="collection">
+                    <a href="#!" class="collection-item" data-country="Italy" data-active="false" data-graphing-color="#90caf9">Italy</a>
+                    <a href="#!" class="collection-item" data-country="South Korea" data-active="false" data-graphing-color="#80cbc4">South Korea</a>
+                    <a href="#!" class="collection-item" data-country="Japan" data-active="false" data-graphing-color="">Japan</a>
+                    <a href="#!" class="collection-item" data-country="Thailand" data-active="false" data-graphing-color="">Thailand</a>
+                    <a href="#!" class="collection-item" data-country="South Korea" data-active="false" data-graphing-color="">South Korea</a>
+                    <a href="#!" class="collection-item" data-country="Singapore" data-active="false" data-graphing-color="">Singapore</a>
+                    <a href="#!" class="collection-item" data-country="Philippines" data-active="false" data-graphing-color="">Philippines</a>
+                    <a href="#!" class="collection-item" data-country="Malaysia" data-active="false" data-graphing-color="">Malaysia</a>
+                    <a href="#!" class="collection-item" data-country="Vietnam" data-active="false" data-graphing-color="">Vietnam</a>
+                    <a href="#!" class="collection-item" data-country="Australia" data-active="false" data-graphing-color="">Australia</a>
+                    <a href="#!" class="collection-item" data-country="Mexico" data-active="false" data-graphing-color="">Mexico</a>
+                    <a href="#!" class="collection-item" data-country="Brazil" data-active="false" data-graphing-color="">Brazil</a>
+                    <a href="#!" class="collection-item" data-country="Colombia" data-active="false" data-graphing-color="">Colombia</a>
+                    <a href="#!" class="collection-item" data-country="France" data-active="false" data-graphing-color="">France</a>
+                    <a href="#!" class="collection-item" data-country="Nepal" data-active="false" data-graphing-color="">Nepal</a>
+                    <a href="#!" class="collection-item" data-country="Canada" data-active="false" data-graphing-color="">Canada</a>
+                    <a href="#!" class="collection-item" data-country="Cambodia" data-active="false" data-graphing-color="">Cambodia</a>
+                    <a href="#!" class="collection-item" data-country="Sri Lanka" data-active="false" data-graphing-color="">Sri Lanka</a>
+                    <a href="#!" class="collection-item" data-country="Ivory Coast" data-active="false" data-graphing-color="">Ivory Coast</a>
+                    <a href="#!" class="collection-item" data-country="Germany" data-active="false" data-graphing-color="">Germany</a>
+                    <a href="#!" class="collection-item" data-country="Finland" data-active="false" data-graphing-color="">Finland</a>
+                    <a href="#!" class="collection-item" data-country="United Arab Emirates" data-active="false" data-graphing-color="">United Arab Emirates</a>
+                    <a href="#!" class="collection-item" data-country="India" data-active="false" data-graphing-color="">India</a>
+                    <a href="#!" class="collection-item" data-country="Italy" data-active="false" data-graphing-color="">Italy</a>
+                    <a href="#!" class="collection-item" data-country="United Kingdom" data-active="false" data-graphing-color="">United Kingdom</a>
+                    <a href="#!" class="collection-item" data-country="Russia" data-active="false" data-graphing-color="">Russia</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Script for USA chart -->
+        <script>
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var myChart;
+                
+            $.get("/api/country/usa/graph", function (countrydata) {
+                    var graph_labels = []
+                    var graph_data = []
+                    json_graph_data = JSON.parse(countrydata);
+                    
+                    for (index in json_graph_data) {
+                        graph_labels.push(json_graph_data[index].day_count);
+                        graph_data.push(json_graph_data[index].total_confirmed);
+                    }
+            
+                    myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: graph_labels,
+                            datasets: [{
+                                label: 'Number of cases over time',
+                                backgroundColor: "#ffb74d",
+                                data: graph_data,
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                    
+            
+                $(".collection-item").click(function() {
+                    var country_string = $(this).attr("data-country");
+                    var graph_color = $(this).attr("data-graphing-color");
+                    $.get("/api/country/graph/" + country_string, function (countrydata) {
+                        var graph_labels = []
+                        var graph_data = []
+                        json_graph_data = JSON.parse(countrydata);
+                        
+                        for (index in json_graph_data) {
+                            graph_labels.push(json_graph_data[index].day_count);
+                            graph_data.push(json_graph_data[index].total_confirmed);
+                        }
+                        var newDataset = {
+                            label: country_string,
+                            backgroundColor: graph_color,
+                            data: graph_data
+                        }
+
+                        myChart.data.datasets.push(newDataset);
+                        myChart.update()
+                    });
+
+                });
+                });
+            
+            
+        </script>
+    </div>
    </body>
    <!-- Script for the USA counts and USA map -->
    <script>
