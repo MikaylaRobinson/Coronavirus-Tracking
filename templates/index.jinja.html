@@ -70,29 +70,12 @@
                     <a href="#!" class="collection-item" data-country="Italy" data-active="false" data-graphing-color="#90caf9">Italy</a>
                     <a href="#!" class="collection-item" data-country="South Korea" data-active="false" data-graphing-color="#80cbc4">South Korea</a>
                     <a href="#!" class="collection-item" data-country="Japan" data-active="false" data-graphing-color="">Japan</a>
-                    <a href="#!" class="collection-item" data-country="Thailand" data-active="false" data-graphing-color="">Thailand</a>
                     <a href="#!" class="collection-item" data-country="South Korea" data-active="false" data-graphing-color="">South Korea</a>
-                    <a href="#!" class="collection-item" data-country="Singapore" data-active="false" data-graphing-color="">Singapore</a>
-                    <a href="#!" class="collection-item" data-country="Philippines" data-active="false" data-graphing-color="">Philippines</a>
-                    <a href="#!" class="collection-item" data-country="Malaysia" data-active="false" data-graphing-color="">Malaysia</a>
-                    <a href="#!" class="collection-item" data-country="Vietnam" data-active="false" data-graphing-color="">Vietnam</a>
-                    <a href="#!" class="collection-item" data-country="Australia" data-active="false" data-graphing-color="">Australia</a>
-                    <a href="#!" class="collection-item" data-country="Mexico" data-active="false" data-graphing-color="">Mexico</a>
-                    <a href="#!" class="collection-item" data-country="Brazil" data-active="false" data-graphing-color="">Brazil</a>
-                    <a href="#!" class="collection-item" data-country="Colombia" data-active="false" data-graphing-color="">Colombia</a>
                     <a href="#!" class="collection-item" data-country="France" data-active="false" data-graphing-color="">France</a>
-                    <a href="#!" class="collection-item" data-country="Nepal" data-active="false" data-graphing-color="">Nepal</a>
                     <a href="#!" class="collection-item" data-country="Canada" data-active="false" data-graphing-color="">Canada</a>
-                    <a href="#!" class="collection-item" data-country="Cambodia" data-active="false" data-graphing-color="">Cambodia</a>
-                    <a href="#!" class="collection-item" data-country="Sri Lanka" data-active="false" data-graphing-color="">Sri Lanka</a>
-                    <a href="#!" class="collection-item" data-country="Ivory Coast" data-active="false" data-graphing-color="">Ivory Coast</a>
+                    <a href="#!" class="collection-item" data-country="China" data-active="false" data-graphing-color="">China</a>
                     <a href="#!" class="collection-item" data-country="Germany" data-active="false" data-graphing-color="">Germany</a>
-                    <a href="#!" class="collection-item" data-country="Finland" data-active="false" data-graphing-color="">Finland</a>
-                    <a href="#!" class="collection-item" data-country="United Arab Emirates" data-active="false" data-graphing-color="">United Arab Emirates</a>
-                    <a href="#!" class="collection-item" data-country="India" data-active="false" data-graphing-color="">India</a>
-                    <a href="#!" class="collection-item" data-country="Italy" data-active="false" data-graphing-color="">Italy</a>
                     <a href="#!" class="collection-item" data-country="United Kingdom" data-active="false" data-graphing-color="">United Kingdom</a>
-                    <a href="#!" class="collection-item" data-country="Russia" data-active="false" data-graphing-color="">Russia</a>
                 </div>
             </div>
         </div>
@@ -103,23 +86,23 @@
                 var myChart;
                 
             $.get("/api/country/usa/graph", function (countrydata) {
-                    var graph_labels = []
-                    var graph_data = []
+                    var USA_graph_labels = []
+                    var USA_graph_data = []
                     json_graph_data = JSON.parse(countrydata);
                     
                     for (index in json_graph_data) {
-                        graph_labels.push(json_graph_data[index].day_count);
-                        graph_data.push(json_graph_data[index].total_confirmed);
+                        USA_graph_labels.push(json_graph_data[index].day_count);
+                        USA_graph_data.push(json_graph_data[index].total_confirmed);
                     }
             
                     myChart = new Chart(ctx, {
                         type: 'bar',
                         data: {
-                            labels: graph_labels,
+                            labels: USA_graph_labels,
                             datasets: [{
                                 label: 'Number of cases over time',
                                 backgroundColor: "#ffb74d",
-                                data: graph_data,
+                                data: USA_graph_data,
                                 borderWidth: 1
                             }]
                         },
@@ -138,6 +121,8 @@
                 $(".collection-item").click(function() {
                     var country_string = $(this).attr("data-country");
                     var graph_color = $(this).attr("data-graphing-color");
+
+
                     $.get("/api/country/graph/" + country_string, function (countrydata) {
                         var graph_labels = []
                         var graph_data = []
@@ -153,7 +138,14 @@
                             data: graph_data
                         }
 
-                        myChart.data.datasets.push(newDataset);
+                        if (myChart.data.datasets[1] == undefined) {
+                            myChart.data.datasets.push(newDataset);
+                        }
+                        else {
+                            myChart.data.datasets.pop();
+                            myChart.data.datasets.push(newDataset);
+                        }
+                        
                         myChart.update()
                     });
 
