@@ -21,21 +21,35 @@ def get_usa_cases():
     global usa_cases_total
     cur.execute("SELECT sum(confirmed) FROM coronaworld where date_recorded = '2020-03-19' and country_or_region = 'US';")
     num = cur.fetchone()
-    usa_cases_total = str(num[0])
+    usa_cases_total = str(int(num[0]))
 
 italy_cases_total = 0
 def get_italy_cases():
     global italy_cases_total
     cur.execute("SELECT sum(confirmed) FROM coronaworld where date_recorded = '2020-03-19' and country_or_region = 'Italy';")
     num = cur.fetchone()
-    italy_cases_total = str(num[0])
+    italy_cases_total = str(int(num[0]))
 
 usa_deaths_total = 0
 def get_usa_deaths():
     global usa_deaths_total
     cur.execute("SELECT sum(deaths) FROM coronaworld where date_recorded = '2020-03-19' and country_or_region = 'US';")
     num = cur.fetchone()
-    usa_deaths_total = str(num[0])
+    usa_deaths_total = str(int(num[0]))
+
+world_cases_total = 0
+def get_world_cases():
+    global world_cases_total
+    cur.execute("SELECT sum(confirmed) FROM coronaworld where date_recorded = '2020-03-19';")
+    num = cur.fetchone()
+    world_cases_total = str(int(num[0]))
+
+world_deaths_total = 0
+def get_world_deaths():
+    global world_deaths_total
+    cur.execute("SELECT sum(deaths) FROM coronaworld where date_recorded = '2020-03-19';")
+    num = cur.fetchone()
+    world_deaths_total = str(int(num[0]))
 
 mapdata = None
 def get_map_data():
@@ -59,6 +73,14 @@ def api_country_aggregate_cases_italy():
 @app.route('/api/country/aggregate/deaths/usa')
 def api_country_aggregate_deaths_usa():
     return usa_deaths_total
+
+@app.route('/api/country/aggregate/cases/world')
+def api_country_aggregate_cases_world():
+    return world_cases_total
+
+@app.route('/api/country/aggregate/deaths/world')
+def api_country_aggregate_deaths_world():
+    return world_deaths_total
 
 @app.route('/api/country/usa/graph', methods=['GET'])
 def api_country_usa_count_graph():
@@ -124,6 +146,8 @@ def prepare_graph_data(rows):
 if __name__ == '__main__':
     get_usa_cases()
     get_usa_deaths()
+    get_world_deaths()
+    get_world_cases()
     get_map_data()
     app.debug = os.environ.get("DEBUG_MODE")
     app.run()

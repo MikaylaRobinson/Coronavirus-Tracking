@@ -4,6 +4,7 @@
 .content {
     padding-left: 50px;
     padding-right: 50px;
+    padding-top: 30px;
 }
 #mapid { height: 550px; }
 
@@ -14,4 +15,8 @@
 .logo {
     margin-left: 50px;
     padding-left: .75rem;
+}
+
+.nav {
+    padding-bottom: 15px;
 }
