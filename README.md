@@ -10,3 +10,4 @@ Confirmed cases by date by country.
 * SQL
 
 ## Data Source
+https://www.kaggle.com/gpreda/coronavirus-2019ncov
