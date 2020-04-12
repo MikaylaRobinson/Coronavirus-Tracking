@@ -42,6 +42,15 @@ html {
     background-position: center;
     color: #fff;
     background-attachment: fixed;
+    text-align: center;
+}
+
+.information-card {
+
+}
+
+.information_features {
+    display: inline-block;
 }
 
 /* buttons */
