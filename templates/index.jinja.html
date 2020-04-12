@@ -19,6 +19,7 @@
    </head>
 
    <body>
+       <!-- *********************NAV BAR*****************************************-->
       <nav>
          <div class="nav-wrapper blue-grey darken-1">
             <a href="#" class="brand-logo logo">Covid-19 Tracker</a>
@@ -28,8 +29,19 @@
       </nav>
 
       <div class="content">
-          
+          <section class="section-information">
+          <div class="information_landing">
+              <div>The novel coronavirus emergeded in ... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+          </div>
+          <div class="information_features">
+               <a href="#" class="btn btn-ghost">USA Map</a>
+               <a href="#" class="btn btn-ghost">USA Comparisons</a>
+               <a href="#" class="btn btn-ghost">Data by Country</a>
+          </div>
+        </section>
         <!-- USA Map with case/death counts for United States -->
+        <section class="section-map-counts">
+        <div class="map_and_count_cards" >
         <div class="row">
             <div class="col s9 push-s3 map-container">
                 <div id="mapid">
@@ -70,10 +82,13 @@
                         </div>
                 </div>
             </div>
-
+            </div>
         </div>
+    </section>
 
-        <!-- USA Comparison Charts with Italy -->
+        <!-- USA Comparison Charts with list of countries -->
+        <section class="section-comparison">
+        <div class="comparison_graph" >
         <div class="row">
             <div class="col s12">
                
@@ -95,12 +110,49 @@
                     <a href="#!" class="collection-item" data-country="United Kingdom" data-active="false" data-graphing-color="">United Kingdom</a>
                     <a href="#!" class="collection-item" data-country="Spain" data-active="false" data-graphing-color="">Spain</a>
                     <a href="#!" class="collection-item" data-country="Iran" data-active="false" data-graphing-color="">Iran</a>
-
-
                 </div>
                 <p>Data Courtesy of: https://www.kaggle.com/gpreda/coronavirus-2019ncov</p>
             </div>
         </div>
+    </div>
+</section>
+
+        <!-- Country Numbers Table -->
+        <section class="section-table">
+        <div class="table_to_populate">
+        <div>
+            <h3>Data by Country: Country Name auto fill by selector</h3>
+            <p>Choose a country to populate the table </p>
+            <div class="collection">
+                <a href="#!" class="collection-item" data-country="Italy" data-active="false" data-graphing-color="#90caf9">Italy</a>
+                <a href="#!" class="collection-item" data-country="South Korea" data-active="false" data-graphing-color="#80cbc4">South Korea</a>
+                <a href="#!" class="collection-item" data-country="Japan" data-active="false" data-graphing-color="">Japan</a>
+                <a href="#!" class="collection-item" data-country="France" data-active="false" data-graphing-color="">France</a>
+                <a href="#!" class="collection-item" data-country="Canada" data-active="false" data-graphing-color="">Canada</a>
+                <a href="#!" class="collection-item" data-country="China" data-active="false" data-graphing-color="">China</a>
+                <a href="#!" class="collection-item" data-country="Germany" data-active="false" data-graphing-color="">Germany</a>
+                <a href="#!" class="collection-item" data-country="United Kingdom" data-active="false" data-graphing-color="">United Kingdom</a>
+                <a href="#!" class="collection-item" data-country="Spain" data-active="false" data-graphing-color="">Spain</a>
+                <a href="#!" class="collection-item" data-country="Iran" data-active="false" data-graphing-color="">Iran</a>
+
+
+            </div>
+            <table style="width:100%">
+                    <tr>
+                      <th>Total Cases</th>
+                      <th>Recovered</th>
+                      <th>Deaths</th>
+                    </tr>
+                    <tr>
+                      <td>Fill in Number</td>
+                      <td>Fill in Number</td>
+                      <td>Fill in Number</td>
+                    </tr>
+                  </table>
+        </div>
+    </div>
+</section>
+      </div>
 
         <!-- Script for USA chart -->
         <script>
@@ -241,7 +293,7 @@
                     color: 'red',
                     fillColor: '#f03',
                     fillOpacity: 0.5,
-                    radius: 500
+                    radius: 250
                     }).addTo(mymap);
             }
             })

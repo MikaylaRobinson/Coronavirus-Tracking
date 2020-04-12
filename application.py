@@ -19,35 +19,28 @@ cur = con.cursor()
 usa_cases_total = 0
 def get_usa_cases():
     global usa_cases_total
-    cur.execute("SELECT sum(confirmed) FROM coronaworld where date_recorded = '2020-03-19' and country_or_region = 'US';")
+    cur.execute("SELECT sum(confirmed) FROM coronaworld where date_recorded = '2020-04-09' and country_or_region = 'US';")
     num = cur.fetchone()
     usa_cases_total = str(int(num[0]))
-
-italy_cases_total = 0
-def get_italy_cases():
-    global italy_cases_total
-    cur.execute("SELECT sum(confirmed) FROM coronaworld where date_recorded = '2020-03-19' and country_or_region = 'Italy';")
-    num = cur.fetchone()
-    italy_cases_total = str(int(num[0]))
 
 usa_deaths_total = 0
 def get_usa_deaths():
     global usa_deaths_total
-    cur.execute("SELECT sum(deaths) FROM coronaworld where date_recorded = '2020-03-19' and country_or_region = 'US';")
+    cur.execute("SELECT sum(deaths) FROM coronaworld where date_recorded = '2020-04-09' and country_or_region = 'US';")
     num = cur.fetchone()
     usa_deaths_total = str(int(num[0]))
 
 world_cases_total = 0
 def get_world_cases():
     global world_cases_total
-    cur.execute("SELECT sum(confirmed) FROM coronaworld where date_recorded = '2020-03-19';")
+    cur.execute("SELECT sum(confirmed) FROM coronaworld where date_recorded = '2020-04-09';")
     num = cur.fetchone()
     world_cases_total = str(int(num[0]))
 
 world_deaths_total = 0
 def get_world_deaths():
     global world_deaths_total
-    cur.execute("SELECT sum(deaths) FROM coronaworld where date_recorded = '2020-03-19';")
+    cur.execute("SELECT sum(deaths) FROM coronaworld where date_recorded = '2020-04-09';")
     num = cur.fetchone()
     world_deaths_total = str(int(num[0]))
 

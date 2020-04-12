@@ -1,11 +1,7 @@
 .center {
     text-align: center;
 }
-.content {
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-top: 30px;
-}
+
 #mapid { height: 550px; }
 
 .map-container {
@@ -19,4 +15,77 @@
 
 .nav {
     padding-bottom: 15px;
+}
+
+section {
+    padding: 80px 0;
+}
+
+html,
+body{
+    background-color: #fff;
+    color: #535353;
+    font-family: 'Lato', 'Arial', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.section-information {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(img/virus.jpg);
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    background-attachment: fixed;
+}
+
+/* buttons */
+.btn:link,
+.btn:visited,
+input[type=submit] {
+    display: inline-block;
+    padding: 10px 30px;
+    font-weight: 300;
+    text-decoration: none;
+    border-radius: 200px;
+    -webkit-transition: background-color 0.2s, border 0.2s, color 0.2s;
+    transition: background-color 0.2s, border 0.2s, color 0.2s;
+}
+
+.btn-full:link,
+.btn-full:visited,
+input[type=submit]{
+    background-color: #4d4c4c;
+    border: 1px solid #4d4c4c;
+    color: #fff;
+    margin-right: 15px;
+}
+
+.btn-ghost:link,
+.btn-ghost:visited {
+    border: 1px solid #4d4c4c;
+    color: #4d4c4c;
+}
+
+.btn:hover,
+.btn:active,
+input[type=submit]:hover,
+input[type=submit]:active {
+    background-color: #4d4c4c;
+}
+
+.btn-full:hover,
+.btn-full:active {
+    border: 1px solid #4d4c4c;
+}
+
+.btn-ghost:hover,
+.btn-ghost:active {
+    border: 1px solid #4d4c4c;
+    color: #fff;
 }
