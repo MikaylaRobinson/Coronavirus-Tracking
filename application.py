@@ -44,6 +44,13 @@ def get_world_deaths():
     num = cur.fetchone()
     world_deaths_total = str(int(num[0]))
 
+world_recovered_total = 0
+def get_world_recovered():
+    global world_recovered_total
+    cur.execute("SELECT sum(recovered) FROM coronaworld where date_recorded = '2020-04-09';")
+    num = cur.fetchone()
+    world_recovered_total = str(int(num[0]))
+
 mapdata = None
 def get_map_data():
     global mapdata
@@ -59,10 +66,6 @@ def index():
 def api_country_aggregate_cases_usa():
     return usa_cases_total
 
-@app.route('/api/country/aggregate/cases/italy')
-def api_country_aggregate_cases_italy():
-    return italy_cases_total
-
 @app.route('/api/country/aggregate/deaths/usa')
 def api_country_aggregate_deaths_usa():
     return usa_deaths_total
@@ -74,6 +77,10 @@ def api_country_aggregate_cases_world():
 @app.route('/api/country/aggregate/deaths/world')
 def api_country_aggregate_deaths_world():
     return world_deaths_total
+
+@app.route('/api/country/aggregate/recovered/world')
+def api_country_aggregate_recovered_world():
+    return world_recovered_total
 
 @app.route('/api/country/usa/graph', methods=['GET'])
 def api_country_usa_count_graph():
@@ -140,6 +147,7 @@ if __name__ == '__main__':
     get_usa_cases()
     get_usa_deaths()
     get_world_deaths()
+    get_world_recovered()
     get_world_cases()
     get_map_data()
     app.debug = os.environ.get("DEBUG_MODE")
