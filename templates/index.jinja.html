@@ -31,6 +31,14 @@
       <div class="content">
           <section class="section-information">
               <div class="row">
+                    <div class="col s9">
+                            <div class="information_landing">
+                                    <div>The novel coronavirus emergeded in ... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                                    <div>Information on my site with data source credit... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                                
+                                </div>
+    
+                    </div>
                   <div class="col s3">
                         <div class="card blue-grey darken-1 information-card">
                                 <div class="card-content white-text">
@@ -51,36 +59,33 @@
                                 </div>
                         </div>
                   </div>
-                  <div class="col s9">
-                        <div class="information_landing">
-                                <div>The novel coronavirus emergeded in ... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                                <div>Information on my site with data source credit... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                            
+
+              </div>
+              <div class="row">
+                    <div class="information_features">
+                            <div class="col s4">
+                                <h4>USA MAP</h4>
+                                <p>Mapping the confirmed instances of COVID-19 in the United States</p>
+                                <a href="#map" class="btn btn-ghost">USA Map</a>
                             </div>
-                            <div class="information_features">
-                                <div class="col s4">
-                                    <h4>USA MAP</h4>
-                                    <p>fkaljfglkajenfljkasdflkjasbdfkljbaskldf</p>
-                                    <a href="#" class="btn btn-ghost">USA Map</a>
-                                </div>
-                                <div class="col s4">
-                                    <h4>USA comparisons</h4>
-                                    <p>fkaljfglkajenfljkasdflkjasbdfkljbaskldf</p>
-                                    <a href="#" class="btn btn-ghost">USA Comparisons</a>
-                                </div>
-                                <div class="col s4">
-                                    <h4>COUNTRY DATA</h4>
-                                    <p>ghlakwjefhlakjshflkajshdflkj</p>
-                                    <a href="#" class="btn btn-ghost">Data by Country</a></div>   
-                               </div>
-                </div>
+                            <div class="col s4">
+                                <h4>USA comparisons</h4>
+                                <p>Compare the progression of case count by country against the confirmed cases in the United States.</p>
+                                <a href="#compare" class="btn btn-ghost"> Country Comparison</a>
+                            </div>
+                            <div class="col s4">
+                                <h4>Data by Country</h4>
+                                <p>Select a country to see counts for confirmed cases, deaths, and recovered patients.</p>
+                                <a href="#table" class="btn btn-ghost">Data by Country</a>
+                            </div>   
+                           </div>
               </div>
 
 
 
         </section>
         <!-- USA Map with case/death counts for United States -->
-        <section class="section-map-counts">
+        <section class="section-map-counts" id="map">
         <div class="map_and_count_cards" >
         <div class="row">
             <div class="col s9 push-s3 map-container">
@@ -91,25 +96,8 @@
             <div class="col s3 pull-s9">
                 <div class="card blue-grey darken-1">
                         <div class="card-content white-text">
-                        <span class="card-title flow-text">Total World Cases</span>
-                        <div id="world-total-cases"></div>
-                        </div>
-                </div>
-            </div>
-
-            <div class="col s3 pull-s9">
-                <div class="card blue-grey darken-1">
-                        <div class="card-content white-text">
                         <span class="card-title flow-text">Total US Cases</span>
                         <div id="usa-total-cases"></div>
-                        </div>
-                </div>
-            </div>
-            <div class="col s3 pull-s9">
-                <div class="card blue-grey darken-1">
-                        <div class="card-content white-text">
-                        <span class="card-title flow-text">Total World Deaths</span>
-                        <div id="world-total-deaths"></div>
                         </div>
                 </div>
             </div>
@@ -127,7 +115,7 @@
     </section>
 
         <!-- USA Comparison Charts with list of countries -->
-        <section class="section-comparison">
+        <section class="section-comparison" id="compare">
         <div class="comparison_graph" >
         <div class="row">
             <div class="col s12">
@@ -158,7 +146,7 @@
 </section>
 
         <!-- Country Numbers Table -->
-        <section class="section-table">
+        <section class="section-table" id="table">
         <div class="table_to_populate">
         <div>
             <h3>Data by Country: Country Name auto fill by selector</h3>
