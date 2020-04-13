@@ -30,6 +30,13 @@ def get_usa_deaths():
     num = cur.fetchone()
     usa_deaths_total = str(int(num[0]))
 
+usa_recovered_total = 0
+def get_usa_recovered():
+    global usa_recovered_total
+    cur.execute("SELECT sum(recovered) FROM coronaworld where date_recorded = '2020-04-09' and country_or_region = 'US';")
+    num = cur.fetchone()
+    usa_recovered_total = str(int(num[0]))
+
 world_cases_total = 0
 def get_world_cases():
     global world_cases_total
@@ -70,6 +77,10 @@ def api_country_aggregate_cases_usa():
 def api_country_aggregate_deaths_usa():
     return usa_deaths_total
 
+@app.route('/api/country/aggregate/recovered/usa')
+def api_country_aggregate_recovered_usa():
+    return usa_recovered_total
+
 @app.route('/api/country/aggregate/cases/world')
 def api_country_aggregate_cases_world():
     return world_cases_total
@@ -99,6 +110,13 @@ def api_country_general(country_name):
     rows = cur.fetchall()
     return prepare_graph_data(rows)
 
+@app.route('/api/country/table/<data_requested>/<country_name>', methods=['GET'])
+def api_country_table_confirmed(country_name, data_requested):
+    query = "Select sum(%(data_type)s) from coronaworld where country_or_region = %(country)s and date_recorded = '2020-04-09';"
+    cur.execute(query, {"country": country_name}, {"data_type": data_requested})
+    num = cur.fetchone()
+    country_data = str(int(num[0]))
+    return country_data
 
 # Transforms rows returned from SQL query to json
 def sql_to_json_all_columns(rows):
@@ -146,6 +164,7 @@ def prepare_graph_data(rows):
 if __name__ == '__main__':
     get_usa_cases()
     get_usa_deaths()
+    get_usa_recovered()
     get_world_deaths()
     get_world_recovered()
     get_world_cases()

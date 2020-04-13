@@ -47,17 +47,26 @@ html {
 }
 
 .information-card {
+    display: inline-block;
+}
 
+.information_landing {
+    margin: 50px;
 }
 
 .information_features {
     display: inline-block;
 }
 
+.section-map-counts {
+    background-color: #e0e0e0;
+}
+
 /* buttons */
 .btn:link,
 .btn:visited,
 input[type=submit] {
+    line-height: 14px;
     display: inline-block;
     padding: 10px 30px;
     font-weight: 300;
@@ -100,6 +109,12 @@ input[type=submit]:active {
     color: #fff;
 }
 
+.btn {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 14px;
+}
+
 /* Style the navbar */
 #navbar {
     overflow: hidden;
@@ -116,10 +131,9 @@ input[type=submit]:active {
     padding: 14px;
     text-decoration: none;
   }
-  
-  /* Page content */
-  .content {
-    padding: 16px;
+
+  .section-table {
+      margin: 20px;
   }
   
   /* The sticky class is added to the navbar with JS when it reaches its scroll position */

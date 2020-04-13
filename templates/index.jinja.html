@@ -32,49 +32,51 @@
       <div class="content">
           <section class="section-information" id="home">
               <div class="row">
-                    <div class="col s9">
-                            <div class="information_landing">
-                                    <div>After its beginning in China, the novel coronavirus known as COVID-19 has traveled around the world. officially becoming a pandemic. </div>
-                                    <div>Information on my site with data source credit... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                                
-                                </div>
-    
-                    </div>
-                  <div class="col s3">
-                        <div class="card blue-grey darken-1 information-card">
+
+                        <div class="card teal lighten-1 information-card">
                                 <div class="card-content white-text">
                                 <span class="card-title flow-text">Total World Cases</span>
                                 <div id="world-total-cases"></div>
                                 </div>
                         </div>
-                        <div class="card blue-grey darken-1 information-card">
+                        <div class="card teal lighten-1 information-card">
                                 <div class="card-content white-text">
                                 <span class="card-title flow-text">Total World Deaths</span>
                                 <div id="world-total-deaths"></div>
                                 </div>
                         </div>
-                        <div class="card blue-grey darken-1 information-card">
+                        <div class="card teal lighten-1 information-card">
                                 <div class="card-content white-text">
                                 <span class="card-title flow-text">Total World Recovered</span>
                                 <div id="world-total-recovered"></div>
                                 </div>
                         </div>
-                  </div>
+              </div>
+         <div class="row">
+                        <div class="information_landing">
+                                <div>After its beginning in China, the novel coronavirus known as COVID-19 has traveled around the world, officially becoming a pandemic. Responses
+                                    to the virus have varied greatly country to country. Based on these responses and other factors such as population density and social norms, the 
+                                    virus has grown more rapidly in some areas. Using the dataset made available on <a href="https://www.kaggle.com/gpreda/coronavirus-2019ncov">Kaggle</a>,
+                                    I have created a couple features in this application to track the progression of COVID-19. 
+                                </div>
+                        </div>
+
+
 
               </div>
               <div class="row">
-                    <div class="information_features">
-                            <div class="col s4">
+                    <div class="info">
+                            <div class="col s4 feature-card">
                                 <h4>USA MAP</h4>
                                 <p>Mapping the confirmed instances of COVID-19 in the United States</p>
                                 <a href="#map" class="btn btn-ghost">USA Map</a>
                             </div>
-                            <div class="col s4">
+                            <div class="col s4 feature-card">
                                 <h4>USA comparisons</h4>
                                 <p>Compare the progression of case count by country against the confirmed cases in the United States.</p>
                                 <a href="#compare" class="btn btn-ghost"> Country Comparison</a>
                             </div>
-                            <div class="col s4">
+                            <div class="col s4 feature-card">
                                 <h4>Data by Country</h4>
                                 <p>Select a country to see counts for confirmed cases, deaths, and recovered patients.</p>
                                 <a href="#table" class="btn btn-ghost">Data by Country</a>
@@ -87,14 +89,15 @@
         </section>
         <!-- USA Map with case/death counts for United States -->
         <section class="section-map-counts" id="map">
+            <h2 class="center">COVID-19 in the United States</h2>
         <div class="map_and_count_cards" >
         <div class="row">
-            <div class="col s9 push-s3 map-container">
+            <div class="col s10 push-s2 map-container">
                 <div id="mapid">
                 </div>
             </div>
 
-            <div class="col s3 pull-s9">
+            <div class="col s2 pull-s10">
                 <div class="card blue-grey darken-1">
                         <div class="card-content white-text">
                         <span class="card-title flow-text">Total US Cases</span>
@@ -103,7 +106,7 @@
                 </div>
             </div>
 
-            <div class="col s3 pull-s9">
+            <div class="col s2 pull-s10">
                 <div class="card blue-grey darken-1">
                         <div class="card-content white-text">
                         <span class="card-title flow-text">Total US Deaths</span>
@@ -111,6 +114,14 @@
                         </div>
                 </div>
             </div>
+            <div class="col s2 pull-s10">
+                    <div class="card blue-grey darken-1">
+                            <div class="card-content white-text">
+                            <span class="card-title flow-text">Total US Recovered</span>
+                            <div id="usa-total-recovered"></div>
+                            </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -153,31 +164,48 @@
             <h3>Data by Country: Country Name auto fill by selector</h3>
             <p>Choose a country to populate the table </p>
             <div class="collection">
-                <a href="#!" class="collection-item" data-country="Italy" data-active="false" data-graphing-color="#90caf9">Italy</a>
-                <a href="#!" class="collection-item" data-country="South Korea" data-active="false" data-graphing-color="#80cbc4">South Korea</a>
-                <a href="#!" class="collection-item" data-country="Japan" data-active="false" data-graphing-color="">Japan</a>
-                <a href="#!" class="collection-item" data-country="France" data-active="false" data-graphing-color="">France</a>
-                <a href="#!" class="collection-item" data-country="Canada" data-active="false" data-graphing-color="">Canada</a>
-                <a href="#!" class="collection-item" data-country="China" data-active="false" data-graphing-color="">China</a>
-                <a href="#!" class="collection-item" data-country="Germany" data-active="false" data-graphing-color="">Germany</a>
-                <a href="#!" class="collection-item" data-country="United Kingdom" data-active="false" data-graphing-color="">United Kingdom</a>
-                <a href="#!" class="collection-item" data-country="Spain" data-active="false" data-graphing-color="">Spain</a>
-                <a href="#!" class="collection-item" data-country="Iran" data-active="false" data-graphing-color="">Iran</a>
+                <a href="#!" class="collection2-item" data-country="Italy">Italy</a>
+                <a href="#!" class="collection2-item" data-country="South Korea">South Korea</a>
+                <a href="#!" class="collection2-item" data-country="Japan">Japan</a>
+                <a href="#!" class="collection2-item" data-country="France">France</a>
+                <a href="#!" class="collection2-item" data-country="Canada">Canada</a>
+                <a href="#!" class="collection2-item" data-country="China">China</a>
+                <a href="#!" class="collection2-item" data-country="Germany">Germany</a>
+                <a href="#!" class="collection2-item" data-country="United Kingdom">United Kingdom</a>
+                <a href="#!" class="collection2-item" data-country="Spain">Spain</a>
+                <a href="#!" class="collection2-item" data-country="Iran">Iran</a>
 
 
             </div>
-            <table style="width:100%">
+            
+            <div class="card">
+                <div class="card-content">
+                <p id="country-card">Select a country to begin</p>
+                </div>
+                <div class="card-tabs">iloveteeth
+                    
+                <ul class="tabs tabs-fixed-width">
+                    <li class="tab"><a href="#selected-data" data-needed="confirmed">Confirmed</a></li>
+                    <li class="tab"><a href="#selected-data" data-needed="recovered">Recovered</a></li>
+                    <li class="tab"><a href="#selected-data" data-needed="deaths">Deaths</a></li>
+                </ul>
+                </div>
+                <div class="card-content grey lighten-4">
+                <div id="selected-data"></div>
+                </div>
+            </div>
+            <!-- <table style="width:100%">
                     <tr>
                       <th>Total Cases</th>
                       <th>Recovered</th>
                       <th>Deaths</th>
                     </tr>
                     <tr>
-                      <td>Fill in Number</td>
-                      <td>Fill in Number</td>
-                      <td>Fill in Number</td>
+                      <td><div id="selected-cases"></div></td>
+                      <td><div id="selected-recovered"></div></td>
+                      <td><div id="selected-deaths"></div></td>
                     </tr>
-                  </table>
+                  </table> -->
         </div>
     </div>
 </section>
@@ -270,6 +298,22 @@
             
             
         </script>
+        <script>
+                $(".collection2-item").click(function() {
+                    var country_string = $(this).attr("data-country");
+
+                    $("#country-card").html(country_string);
+
+                    $(".tab").click(function() {
+                        var data_requested = $(this).attr("data-needed");
+
+                        $.get("/api/country/table/" + data_requested + "/" + country_string, function ( countrydata) {
+                            $("#selected-data").html(countrydata);
+                        });
+                    })
+
+                });
+        </script>
     </div>
    </body>
    <!-- Script for the USA counts and USA map -->
@@ -280,6 +324,10 @@
       
         $.get( "/api/country/aggregate/deaths/usa", function( data ) {
             $("#usa-total-deaths").html(data);
+        });
+
+        $.get( "/api/country/aggregate/recovered/usa", function( data ) {
+            $("#usa-total-recovered").html(data);
         });
 
         $.get( "/api/country/aggregate/cases/world", function( data ) {
@@ -308,7 +356,7 @@
                 coordinates.push(map_entry);
             }
 
-            var mymap = L.map('mapid').setView([39.8283, -98.5795], 4);
+            var mymap = L.map('mapid').setView([39.8283, -98.5795], 4.5);
     
             L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
             maxZoom: 18,
